@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "828970495079",
+    "firebase_url": "https://travelalot-ed722.firebaseio.com",
+    "project_id": "travelalot-ed722",
+    "storage_bucket": "travelalot-ed722.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828970495079:android:8ce61cef11868e0b2678c2",
+        "android_client_info": {
+          "package_name": "com.lzk.travelalot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "828970495079-en6i4gj16rql41r0rd1kv63pv2h1m5lv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lzk.travelalot",
+            "certificate_hash": "28b77728c599207ae27e10bfd11bde0ec8e415d2"
+          }
+        },
+        {
+          "client_id": "828970495079-t5idk48ak8m9ct99rcd6h3t54kfcfhp0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj0v2nKJcN7XyqwOkNDkKY5-x8bNJ9kaY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "828970495079-t5idk48ak8m9ct99rcd6h3t54kfcfhp0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
