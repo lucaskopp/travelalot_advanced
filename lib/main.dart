@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelalot/interfaces/auth_interface.dart';
 
 import 'app_theme.dart';
 import 'blocs/authentication_bloc/authentication_bloc.dart';
@@ -26,10 +27,10 @@ class _AppState extends State<App> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AuthenticationBloc(authData: AuthData()),
+          create: (context) => AuthenticationBloc(authInterface: AuthData()),
         ),
         BlocProvider(
-          create: (context) => LoginBloc(authRepository: AuthData()),
+          create: (context) => LoginBloc(authInterface: AuthData()),
         ),
         BlocProvider(
           create: (context) => NavigationBloc(),

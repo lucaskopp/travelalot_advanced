@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class AuthData {
+import '../interfaces/auth_interface.dart';
+
+class AuthData implements AuthInterface {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
 

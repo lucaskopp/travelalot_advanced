@@ -4,19 +4,18 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-import '../../data/auth_data.dart';
+import '../../interfaces/auth_interface.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final AuthData _authData;
-  // create interface for data
+  final AuthInterface _authInterface;
 
-  AuthenticationBloc({@required AuthData authData})
-      : assert(authData != null),
-        _authData = authData;
+  AuthenticationBloc({@required AuthInterface authInterface})
+      : assert(authInterface != null),
+        _authInterface = authInterface;
 
   @override
   AuthenticationState get initialState => Uninitialized();
@@ -30,15 +29,15 @@ class AuthenticationBloc
     } else if (event is LoggedIn) {
       yield* _mapLoggedInToState();
     } else if (event is LoggedOut) {
-      yield* _mapLogOutToState();
+      yield* _mapLoggedOutToState();
     }
   }
 
   Stream<AuthenticationState> _mapAppStartedToState() async* {
     try {
-      final isSignedIn = await _authData.isSignedIn();
+      final isSignedIn = await _authInterface.isSignedIn();
       if (isSignedIn) {
-        final userName = await _authData.getUserEmail();
+        final userName = await _authInterface.getUserEmail();
         yield Authenticated(userName);
       } else {
         yield UnAuthenticated();
@@ -49,13 +48,11 @@ class AuthenticationBloc
   }
 
   Stream<AuthenticationState> _mapLoggedInToState() async* {
-    yield Authenticated(await _authData.getUserEmail());
+    yield Authenticated(await _authInterface.getUserEmail());
   }
 
-  Stream<AuthenticationState> _mapLogOutToState() async* {
+  Stream<AuthenticationState> _mapLoggedOutToState() async* {
     yield UnAuthenticated();
-    _authData.signOut();
+    _authInterface.signOut();
   }
-
-  // TODO make logout LoggedOut
 }

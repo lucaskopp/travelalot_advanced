@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../data/auth_data.dart';
+import '../../interfaces/auth_interface.dart';
 
 part 'login_state.dart';
 
@@ -12,12 +12,12 @@ enum LoginEvent {
 }
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  AuthData _authRepository;
+  AuthInterface _authInterface;
 
   LoginBloc({
-    @required AuthData authRepository,
-  })  : assert(authRepository != null),
-        _authRepository = authRepository;
+    @required AuthInterface authInterface,
+  })  : assert(authInterface != null),
+        _authInterface = authInterface;
 
   @override
   LoginState get initialState => LoginState.empty();
@@ -35,7 +35,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   Stream<LoginState> _mapLoginWithGooglePressedToState() async* {
     try {
-      await _authRepository.signInWithGoogle();
+      await _authInterface.signInWithGoogle();
       yield LoginState.success();
     } catch (_) {
       print(_);
