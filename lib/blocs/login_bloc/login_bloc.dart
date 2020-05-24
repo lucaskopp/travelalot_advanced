@@ -26,6 +26,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
+    yield LoginState.loading();
+
     if (event == LoginEvent.SignInWithGoogle) {
       yield* _mapLoginWithGooglePressedToState();
     }
@@ -36,6 +38,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       await _authRepository.signInWithGoogle();
       yield LoginState.success();
     } catch (_) {
+      print(_);
       yield LoginState.failure();
     }
   }
