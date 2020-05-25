@@ -8,4 +8,6 @@ abstract class AuthInterface {
   Future<bool> isSignedIn();
 
   Future<String> getUserEmail();
+
+  Future<Map<String, String>> get headers;
 }

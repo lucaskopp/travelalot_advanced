@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelalot/blocs/authentication_bloc/authentication_bloc.dart';
+
+import '../../blocs/authentication_bloc/authentication_bloc.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -10,13 +11,23 @@ class SettingsPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text('SettingsPage'),
-          MaterialButton(
-            child: Text('LogOut'),
-            textColor: Theme.of(context).accentColor,
-            color: Theme.of(context).buttonColor,
-            onPressed: () {
-              BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
-            },
+          Column(
+            children: <Widget>[
+              MaterialButton(
+                child: Text('LogOut'),
+                textColor: Theme.of(context).accentColor,
+                color: Theme.of(context).buttonColor,
+                onPressed: () {
+                  BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+                },
+              ),
+              MaterialButton(
+                child: Text('test'),
+                textColor: Theme.of(context).accentColor,
+                color: Theme.of(context).buttonColor,
+                onPressed: () {},
+              ),
+            ],
           ),
         ],
       ),

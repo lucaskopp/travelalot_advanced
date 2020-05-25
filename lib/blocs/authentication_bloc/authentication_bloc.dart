@@ -37,8 +37,8 @@ class AuthenticationBloc
     try {
       final isSignedIn = await _authInterface.isSignedIn();
       if (isSignedIn) {
-        final userName = await _authInterface.getUserEmail();
-        yield Authenticated(userName);
+        final authHeaders = await _authInterface.headers;
+        yield Authenticated(authHeaders);
       } else {
         yield UnAuthenticated();
       }
@@ -48,7 +48,7 @@ class AuthenticationBloc
   }
 
   Stream<AuthenticationState> _mapLoggedInToState() async* {
-    yield Authenticated(await _authInterface.getUserEmail());
+    yield Authenticated(await _authInterface.headers);
   }
 
   Stream<AuthenticationState> _mapLoggedOutToState() async* {

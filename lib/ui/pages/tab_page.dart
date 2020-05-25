@@ -28,11 +28,15 @@ class _TabPageState extends State<TabPage> {
   }
 
   @override
+  void initState() {
+    
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        
-      ),
+      appBar: AppBar(),
       bottomNavigationBar: BlocBuilder<NavigationBloc, NavigationEvent>(
         builder: (context, state) => BottomNavigationBar(
           currentIndex: state.index,

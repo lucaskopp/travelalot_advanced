@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelalot/interfaces/auth_interface.dart';
 
 import 'app_theme.dart';
 import 'blocs/authentication_bloc/authentication_bloc.dart';

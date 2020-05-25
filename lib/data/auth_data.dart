@@ -26,11 +26,17 @@ class AuthData implements AuthInterface {
       accessToken: googleAuthentication.accessToken,
     );
     await _signInWithCredentials(credential);
+
     return _firebaseAuth.currentUser();
   }
 
   Future<void> _signInWithCredentials(AuthCredential credential) {
     return _firebaseAuth.signInWithCredential(credential);
+  }
+
+  Future<Map<String, String>> get headers async {
+    GoogleSignInAccount account = await _googleSignIn.signInSilently();
+    return await account.authHeaders;
   }
 
   Future<void> signOut() async {
