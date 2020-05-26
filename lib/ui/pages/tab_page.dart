@@ -13,6 +13,7 @@ class TabPage extends StatefulWidget {
 
 class _TabPageState extends State<TabPage> {
   void _pageDirector(int index, BuildContext context) {
+    // ignore: close_sinks
     var provider = BlocProvider.of<NavigationBloc>(context);
     switch (index) {
       case 0:
