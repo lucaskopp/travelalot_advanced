@@ -13,9 +13,14 @@ class GmailData {
   Future<List<FlightModel>> fetch() async {
     var flights = <FlightModel>[];
 
-    var jsonData = await GmailApi(httpClient).users.messages.list('me', maxResults: 10);
+    const parameters = {
+      'q': '',
+    };
 
-    
+    var jsonData = await GmailApi(httpClient).users.messages.list(
+          'me',
+          q: parameters['q'],
+        );
 
     return flights;
   }
