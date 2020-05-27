@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelalot/blocs/navigation/navigation_bloc.dart';
 
-import '../../blocs/naviagation_bloc/navigation_bloc.dart';
+
 import 'archive_page.dart';
 import 'home_page.dart';
 import 'settings_page.dart';
@@ -30,7 +31,6 @@ class _TabPageState extends State<TabPage> {
 
   @override
   void initState() {
-    
     super.initState();
   }
 

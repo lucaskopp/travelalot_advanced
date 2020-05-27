@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'app_theme.dart';
-import 'blocs/authentication_bloc/authentication_bloc.dart';
-import 'blocs/login_bloc/login_bloc.dart';
-import 'blocs/naviagation_bloc/navigation_bloc.dart';
+import 'blocs/authentication/authentication_bloc.dart';
+import 'blocs/login/login_bloc.dart';
+import 'blocs/navigation/navigation_bloc.dart';
 import 'blocs/simple_bloc_delegate.dart';
 import 'data/auth_data.dart';
 import 'ui/pages/login_page.dart';
