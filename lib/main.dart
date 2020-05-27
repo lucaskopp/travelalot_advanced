@@ -49,7 +49,9 @@ class _AppState extends State<App> {
             }
 
             if (state is Authenticated) {
-              return TabPage();
+              return TabPage(
+                headers: state.authHeaders,
+              );
             }
             return SplashPage();
           },

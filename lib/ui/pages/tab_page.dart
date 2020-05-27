@@ -7,6 +7,10 @@ import 'home_page.dart';
 import 'settings_page.dart';
 
 class TabPage extends StatefulWidget {
+  final Map<String, String> headers;
+
+  const TabPage({Key key, this.headers}) : super(key: key);
+
   @override
   _TabPageState createState() => _TabPageState();
 }
@@ -30,7 +34,6 @@ class _TabPageState extends State<TabPage> {
 
   @override
   void initState() {
-    
     super.initState();
   }
 
