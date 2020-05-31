@@ -2,6 +2,8 @@ import 'package:googleapis/gmail/v1.dart';
 import 'package:http/http.dart';
 import 'package:http/io_client.dart';
 
+import 'dart:convert';
+
 import '../models/flight_model.dart';
 
 class GmailData {
@@ -10,19 +12,19 @@ class GmailData {
 
   GmailData(this.authHeaders) : httpClient = GoogleHttpClient(authHeaders);
 
-  Future<List<FlightModel>> fetch() async {
-    var flights = <FlightModel>[];
+  Future<String> fetch() async {
+//    var flights = <FlightModel>[];
 
-    const parameters = {
-      'q': '',
+    const listEmailParameters = {
+      'q': '%7B%22flight%22%20%22hotel%22%7D%20after%3A',
     };
 
     var jsonData = await GmailApi(httpClient).users.messages.list(
           'me',
-          q: parameters['q'],
+          q: listEmailParameters['q'],
         );
 
-    return flights;
+    return jsonData.messages.toString();
   }
 }
 
