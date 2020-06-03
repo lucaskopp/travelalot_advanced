@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelalot/blocs/mail/mail_bloc.dart';
 
 import 'app_theme.dart';
 import 'blocs/authentication/authentication_bloc.dart';
@@ -33,6 +34,9 @@ class _AppState extends State<App> {
         ),
         BlocProvider(
           create: (context) => NavigationBloc(),
+        ),
+        BlocProvider(
+          create: (context) => MailBloc(),
         ),
       ],
       child: MaterialApp(

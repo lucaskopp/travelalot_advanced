@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelalot/blocs/navigation/navigation_bloc.dart';
+import 'package:travelalot/blocs/mail/mail_bloc.dart';
+import 'package:travelalot/data/gmail_data.dart';
 
+import '../../blocs/navigation/navigation_bloc.dart';
 import 'archive_page.dart';
 import 'home_page.dart';
 import 'settings_page.dart';
@@ -16,6 +18,13 @@ class TabPage extends StatefulWidget {
 }
 
 class _TabPageState extends State<TabPage> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    BlocProvider.of<MailBloc>(context).data = GmailData(widget.headers);
+    print('~~~~ didChangeDependencies at tab page ~~~~');
+  }
+
   void _pageDirector(int index, BuildContext context) {
     // ignore: close_sinks
     var provider = BlocProvider.of<NavigationBloc>(context);
@@ -30,11 +39,6 @@ class _TabPageState extends State<TabPage> {
         provider.add(NavigationEvent.Settings);
         break;
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   @override

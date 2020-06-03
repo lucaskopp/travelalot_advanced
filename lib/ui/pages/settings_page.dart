@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelalot/blocs/authentication/authentication_bloc.dart';
+import 'package:travelalot/blocs/mail/mail_bloc.dart';
+
+import '../../blocs/authentication/authentication_bloc.dart';
 
 
 class SettingsPage extends StatelessWidget {
@@ -25,7 +27,9 @@ class SettingsPage extends StatelessWidget {
                 child: Text('test'),
                 textColor: Theme.of(context).accentColor,
                 color: Theme.of(context).buttonColor,
-                onPressed: () {},
+                onPressed: () {
+                  BlocProvider.of<MailBloc>(context).add(FetchEvent());
+                },
               ),
             ],
           ),

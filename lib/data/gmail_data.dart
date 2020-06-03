@@ -1,43 +1,63 @@
-import 'package:googleapis/gmail/v1.dart';
-import 'package:http/http.dart';
-import 'package:http/io_client.dart';
-
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../models/flight_model.dart';
+import '../interfaces/gmail_interface.dart';
 
-class GmailData {
+class GmailData implements GmailInterface {
   final Map<String, String> authHeaders;
-  final GoogleHttpClient httpClient;
 
-  GmailData(this.authHeaders) : httpClient = GoogleHttpClient(authHeaders);
+  GmailData(this.authHeaders);
 
-  Future<String> fetch() async {
+  Future<void> fetch() async {
 //    var flights = <FlightModel>[];
 
-    const listEmailParameters = {
-      'q': '%7B%22flight%22%20%22hotel%22%7D%20after%3A',
-    };
+    const url =
+        'https://www.googleapis.com/gmail/v1/users/me/messages?q=%7B%22flight%22%20AND%20%22confirmation%22%20AND%20%22itinerary%22%7D&fields=messages';
+    Map<String, dynamic> decodedEmailIds;
+    List<Map<String, dynamic>> emails = [];
 
-    var jsonData = await GmailApi(httpClient).users.messages.list(
-          'me',
-          q: listEmailParameters['q'],
-        );
+    try {
+      final jsonData = await http.get(url, headers: authHeaders);
+      decodedEmailIds = json.decode(jsonData.body);
+    } catch (error) {
+      print(error);
+      rethrow;
+    }
 
-    return jsonData.messages.toString();
+    // TODO add specific error for different things
+//    var test = [
+//      {'id': '1724df2dda7d3894', 'threadId': '1724df2dda7d3894'},
+//      {'id': '1724df2161af6b43', 'threadId': '1724df2161af6b43'},
+//      {'id': '1724defebcd59954', 'threadId': '1724defebcd59954'}
+//    ];
+
+    try {
+      final messages = decodedEmailIds['messages'];
+      await Future.forEach(messages, (element) async {
+        emails.add((await _idToEmail(element['id'])));
+        print(emails.length);
+      });
+      emails.forEach((element) {
+        print(element.toString());
+      });
+    } catch (error) {
+      print(error);
+      rethrow;
+    }
   }
-}
 
-class GoogleHttpClient extends IOClient {
-  Map<String, String> _headers;
-
-  GoogleHttpClient(this._headers) : super();
-
-  @override
-  Future<IOStreamedResponse> send(BaseRequest request) =>
-      super.send(request..headers.addAll(_headers));
-
-  @override
-  Future<Response> head(Object url, {Map<String, String> headers}) =>
-      super.head(url, headers: headers..addAll(_headers));
+  Future<Map<String, dynamic>> _idToEmail(String id) async {
+    final url =
+        'https://www.googleapis.com/gmail/v1/users/me/messages/$id?format=raw';
+    try {
+      final jsonData = await http.get(url, headers: authHeaders);
+      print('inside _idToEmail');
+      final decodedEmail = json.decode(jsonData.body) as Map<String, dynamic>;
+      return decodedEmail;
+    } catch (error) {
+      print(error);
+      rethrow;
+    }
+  }
 }
