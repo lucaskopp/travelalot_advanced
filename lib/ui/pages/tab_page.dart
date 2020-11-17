@@ -22,6 +22,7 @@ class _TabPageState extends State<TabPage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     BlocProvider.of<MailBloc>(context).data = GmailData(widget.headers);
+
     print('~~~~ didChangeDependencies at tab page ~~~~');
   }
 

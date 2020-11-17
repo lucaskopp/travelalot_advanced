@@ -15,10 +15,7 @@ class AuthenticationBloc
 
   AuthenticationBloc({@required AuthInterface authInterface})
       : assert(authInterface != null),
-        _authInterface = authInterface;
-
-  @override
-  AuthenticationState get initialState => Uninitialized();
+        _authInterface = authInterface, super(Uninitialized());
 
   @override
   Stream<AuthenticationState> mapEventToState(

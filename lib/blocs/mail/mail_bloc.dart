@@ -12,10 +12,7 @@ part 'mail_state.dart';
 class MailBloc extends Bloc<MailEvent, MailState> {
   GmailInterface gmailInterface;
 
-  MailBloc({this.gmailInterface});
-
-  @override
-  MailState get initialState => LoadingMailState();
+  MailBloc({this.gmailInterface}) : super(LoadingMailState());
 
   @override
   Stream<MailState> mapEventToState(MailEvent event) async* {

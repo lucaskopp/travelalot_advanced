@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelalot/blocs/mail/mail_bloc.dart';
@@ -6,15 +7,15 @@ import 'app_theme.dart';
 import 'blocs/authentication/authentication_bloc.dart';
 import 'blocs/login/login_bloc.dart';
 import 'blocs/navigation/navigation_bloc.dart';
-import 'blocs/simple_bloc_delegate.dart';
 import 'data/auth_data.dart';
 import 'ui/pages/login_page.dart';
 import 'ui/pages/splash_page.dart';
 import 'ui/pages/tab_page.dart';
 
-main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(App());
-  BlocSupervisor.delegate = SimpleBlocDelegate();
 }
 
 class App extends StatefulWidget {

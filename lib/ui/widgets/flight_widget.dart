@@ -1,42 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:travelalot/models/flight_model.dart';
 
 import 'spaces.dart';
 
 class FlightWidget extends StatelessWidget {
+  final FlightModel flight;
+
+  FlightWidget(this.flight);
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 24,
-        right: 24,
-        top: 8,
-        bottom: 16,
-      ),
-      child: InkWell(
-        splashColor: Colors.transparent,
-        onTap: () {},
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(16.0),
-            ),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.6),
-                offset: const Offset(4, 4),
-                blurRadius: 16,
+    return Dismissible(
+      background: Container(color: Colors.red),
+      key: Key(flight.name),
+      onDismissed: (direction) {
+        // setState(() {
+        //   items.removeAt(index);
+        // });
+
+        Scaffold
+            .of(context)
+            .showSnackBar(SnackBar(content: Text("${flight.name} dismissed")));
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 24,
+          right: 24,
+          top: 8,
+          bottom: 16,
+        ),
+        child: InkWell(
+          splashColor: Colors.transparent,
+          onTap: () {},
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(16.0),
               ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(16.0),
-            ),
-            child: Column(
-              children: <Widget>[
-                buildImage(),
-                buildDescription(context),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.6),
+                  offset: const Offset(4, 4),
+                  blurRadius: 16,
+                ),
               ],
+            ),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(16.0),
+              ),
+              child: Column(
+                children: <Widget>[
+                  buildImage(),
+                  buildDescription(context),
+                ],
+              ),
             ),
           ),
         ),

@@ -1,34 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelalot/blocs/mail/mail_bloc.dart';
+import 'package:travelalot/ui/pages/flights_page.dart';
 
-import '../../models/flight_model.dart';
 import '../widgets/flight_widget.dart';
-
-const List<FlightModel> flights = [
-  FlightModel(
-    arrivalLocaiton: 'Virgina',
-    carrier: 'United Airlines',
-    name: 'Flight 2346',
-    roundTrip: false,
-    startLocation: 'Florida',
-    timeOfArrival: '2:48pm',
-    timeOfFlight: '4:50pm',
-  ),
-];
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return FlightWidget();
-          },
-          itemCount: flights.length,
-        ),
-      ),
+    return BlocBuilder<MailBloc, MailState>(
+      builder: (context, state) {
+        if (state is FetchedMailState) {
+          return FlightsPage(state.flights);
+        }
+
+        if (state is ErrorMailState) {
+          // do error code
+          print("error");
+        }
+
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 }
