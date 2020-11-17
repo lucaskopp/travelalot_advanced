@@ -8,8 +8,10 @@ class FlightModel {
   final String timeOfFlight;
   final String startLocation;
   final String arrivalLocaiton;
+  final String dateReceived;
 
   const FlightModel({
+    @required this.dateReceived,
     @required this.carrier,
     @required this.name,
     @required this.roundTrip,
@@ -19,28 +21,4 @@ class FlightModel {
     @required this.arrivalLocaiton,
   }) : assert(name != null); // TODO add more assertions
 
-  @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is FlightModel &&
-        o.carrier == carrier &&
-        o.name == name &&
-        o.roundTrip == roundTrip &&
-        o.timeOfArrival == timeOfArrival &&
-        o.timeOfFlight == timeOfFlight &&
-        o.startLocation == startLocation &&
-        o.arrivalLocaiton == arrivalLocaiton;
-  }
-
-  @override
-  int get hashCode {
-    return carrier.hashCode ^
-        name.hashCode ^
-        roundTrip.hashCode ^
-        timeOfArrival.hashCode ^
-        timeOfFlight.hashCode ^
-        startLocation.hashCode ^
-        arrivalLocaiton.hashCode;
-  }
 }

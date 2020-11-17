@@ -5,8 +5,7 @@ import 'package:bloc/bloc.dart';
 enum NavigationEvent { Home, Archived, Settings }
 
 class NavigationBloc extends Bloc<NavigationEvent, NavigationEvent> {
-  @override
-  NavigationEvent get initialState => NavigationEvent.Home;
+  NavigationBloc() : super(NavigationEvent.Home);
 
   @override
   Stream<NavigationEvent> mapEventToState(

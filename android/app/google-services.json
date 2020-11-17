@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "828970495079-8komc38a3bgr8s51v6dkuvlqkbij0gbe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lzk.travelalot",
+            "certificate_hash": "1cc33bd3faac63ca7ee6256a74fad999ebdd6ca7"
+          }
+        },
+        {
           "client_id": "828970495079-bnbccakuffq0548jq2sdgtlqptg8uqkj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

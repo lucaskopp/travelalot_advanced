@@ -17,10 +17,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({
     @required AuthInterface authInterface,
   })  : assert(authInterface != null),
-        _authInterface = authInterface;
-
-  @override
-  LoginState get initialState => LoginState.empty();
+        _authInterface = authInterface, super(LoginState.empty());
 
   @override
   Stream<LoginState> mapEventToState(
