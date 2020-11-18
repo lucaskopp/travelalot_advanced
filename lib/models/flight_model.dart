@@ -9,6 +9,7 @@ class FlightModel {
   final String startLocation;
   final String arrivalLocaiton;
   final String dateReceived;
+  final String confirmationNumber;
 
   const FlightModel({
     @required this.dateReceived,
@@ -19,6 +20,7 @@ class FlightModel {
     @required this.timeOfFlight,
     @required this.startLocation,
     @required this.arrivalLocaiton,
+    @required this.confirmationNumber,
   }) : assert(name != null); // TODO add more assertions
 
 }

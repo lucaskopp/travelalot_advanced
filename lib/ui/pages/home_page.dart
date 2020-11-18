@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
     return BlocBuilder<MailBloc, MailState>(
       builder: (context, state) {
         if (state is FetchedMailState) {
+          print(state.flights);
           return FlightsPage(state.flights);
         }
 
