@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:travelalot/models/flight_model.dart';
@@ -74,7 +71,8 @@ class GmailData implements GmailInterface {
           plainText.contains(RegExp(r"UA\d\d\d"))) {
         final flightNameExpression = RegExp(r"UA\d\d\d?\d");
         final flightLocationsExpression = RegExp(r"\([A-Z][A-Z][A-Z]\)");
-        final flightDatesExpression = RegExp(r"\w\w\w,\s\w\w\w\s\d\d,\s\d\d\d\d");
+        final flightDatesExpression =
+            RegExp(r"\w\w\w,\s\w\w\w\s\d\d,\s\d\d\d\d");
         flightToBeAdded.html = element['html'];
         flightToBeAdded.name =
             flightNameExpression.firstMatch(plainText).group(0);
@@ -88,7 +86,6 @@ class GmailData implements GmailInterface {
         tempFlights.add(flightToBeAdded);
         // should be below if more carriers are added
       }
-
     });
 
     flights = tempFlights;
