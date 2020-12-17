@@ -21,7 +21,8 @@ class HomePage extends StatelessWidget {
         }
 
         return Center(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+          ),
         );
       },
     );

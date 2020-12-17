@@ -11,3 +11,12 @@ class FetchEvent extends MailEvent {
   @override
   List<Object> get props => [];
 }
+
+class RemoveEvent extends MailEvent {
+  final String confirmationNumber;
+
+  const RemoveEvent(this.confirmationNumber);
+
+  @override
+  List<Object> get props => [confirmationNumber];
+}

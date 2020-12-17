@@ -9,18 +9,21 @@ import 'dart:convert';
 import '../interfaces/gmail_interface.dart';
 
 class GmailData implements GmailInterface {
+  // rename into something flight related
   final Map<String, String> authHeaders;
+
+  List<FlightModel> flights = [];
+
+  // this should equal the stored flights
 
   GmailData(this.authHeaders);
 
-  Future<List<FlightModel>> fetch() async {
-    var flights = <FlightModel>[];
-
+  Future<void> fetch() async {
     const url =
         'https://www.googleapis.com/gmail/v1/users/me/messages?q=%7B%22flight%22%20AND%20%22airlines%22%20AND%20%22check%22%7D&fields=messages';
     Map<String, dynamic> decodedEmailIds;
     List<Map<String, dynamic>> emails = [];
-    List<String> emailData = [];
+    List<Map<String, String>> emailData = [];
 
     // The fetching of email ids
     try {
@@ -53,15 +56,42 @@ class GmailData implements GmailInterface {
       rethrow;
     }
 
+    List<FlightModel> tempFlights = [];
+
     emailData.forEach((element) {
-      print(element);
-      // if (element.contains("United Airlines")) {
-      //   // make separate method
-      //
-      // }
+      final plainText = element['plainText'];
+
+      FlightModel flightToBeAdded = FlightModel(
+        arrivalLocaiton: "not supported",
+        startLocation: "not supported",
+        carrier: "not supported",
+        name: "not supported",
+        timeOfFlight: "not supported",
+        html: "not supported",
+      );
+
+      if (plainText.contains("United Airlines") &&
+          plainText.contains(RegExp(r"UA\d\d\d"))) {
+        final flightNameExpression = RegExp(r"UA\d\d\d?\d");
+        final flightLocationsExpression = RegExp(r"\([A-Z][A-Z][A-Z]\)");
+        final flightDatesExpression = RegExp(r"\w\w\w,\s\w\w\w\s\d\d,\s\d\d\d\d");
+        flightToBeAdded.html = element['html'];
+        flightToBeAdded.name =
+            flightNameExpression.firstMatch(plainText).group(0);
+        flightToBeAdded.carrier = "United Airlines";
+        final locations = flightLocationsExpression.allMatches(plainText);
+        final dates = flightDatesExpression.allMatches(plainText);
+        flightToBeAdded.startLocation = locations.elementAt(0).group(0);
+        flightToBeAdded.arrivalLocaiton = locations.elementAt(1).group(0);
+        flightToBeAdded.timeOfFlight = dates.elementAt(2).group(0);
+
+        tempFlights.add(flightToBeAdded);
+        // should be below if more carriers are added
+      }
+
     });
 
-    return flights;
+    flights = tempFlights;
   }
 
   Future<Map<String, dynamic>> _idToEmail(String id) async {
@@ -78,7 +108,7 @@ class GmailData implements GmailInterface {
     }
   }
 
-  String emailToText(Map<String, dynamic> email) {
+  Map<String, String> emailToText(Map<String, dynamic> email) {
     List<dynamic> parts;
     if (email['payload']['parts'][0]['parts'] == null) {
       parts = email['payload']['parts'];
@@ -103,8 +133,16 @@ class GmailData implements GmailInterface {
         utf8.decode(base64.decode(largestPart['body']['data']));
 
     final document = parse(textToBeConverted);
-    final String parsedString = parse(document.body.text).documentElement.text;
+    final parsedString = parse(document.body.text).documentElement.text;
 
-    return parsedString.replaceAll("\n", " ").replaceAll(RegExp(' +'), ' ');
+    return {
+      'plainText':
+          parsedString.replaceAll('\n', ' ').replaceAll(RegExp(' +'), ' '),
+      'html': textToBeConverted,
+    };
+  }
+
+  void removeFlight(String id) {
+    flights.removeWhere((element) => element.name == id);
   }
 }

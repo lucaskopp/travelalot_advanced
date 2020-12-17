@@ -24,9 +24,9 @@ class AppTheme {
   }
 
   static ThemeData buildLightTheme() {
-    final Color primaryColor = HexColor('#1D24D8');
-    final Color secondaryColor = HexColor('#FFFFFF');
-    final ColorScheme colorScheme = const ColorScheme.light().copyWith(
+    final Color primaryColor = HexColor('#FFFFFF');
+    final Color secondaryColor = HexColor('#1D24D8');
+    final ColorScheme colorScheme = const ColorScheme.highContrastLight().copyWith(
       primary: primaryColor,
       secondary: secondaryColor,
     );
@@ -34,6 +34,9 @@ class AppTheme {
     return base.copyWith(
       appBarTheme: AppBarTheme(
         color: Colors.white,
+        iconTheme: IconThemeData(
+          color: HexColor('#1D24D8'),
+        )
       ),
       colorScheme: colorScheme,
       primaryColor: primaryColor,
@@ -41,7 +44,7 @@ class AppTheme {
       indicatorColor: Colors.white,
       splashColor: Colors.white24,
       splashFactory: InkRipple.splashFactory,
-      accentColor: secondaryColor,
+      accentColor: HexColor('#1D24D8'),
       canvasColor: Colors.white,
       backgroundColor: const Color(0xFFFFFFFF),
       scaffoldBackgroundColor: const Color(0xFFF6F6F6),

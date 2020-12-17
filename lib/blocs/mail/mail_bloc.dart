@@ -11,6 +11,7 @@ part 'mail_event.dart';
 part 'mail_state.dart';
 
 class MailBloc extends Bloc<MailEvent, MailState> {
+  // should not be called MailBloc; holds all flight information
   GmailInterface gmailInterface;
 
   MailBloc({this.gmailInterface}) : super(LoadingMailState());
@@ -19,24 +20,20 @@ class MailBloc extends Bloc<MailEvent, MailState> {
   Stream<MailState> mapEventToState(MailEvent event) async* {
     if (event is FetchEvent) {
       try {
-        var temp = [
-          FlightModel(
-            dateReceived: "06/19/2003",
-            carrier: "United Airlines",
-            name: "0000",
-            roundTrip: false,
-            timeOfArrival: "5:15 pm",
-            timeOfFlight: "1:15 pm",
-            startLocation: "Virginia",
-            arrivalLocaiton: "Minnesota",
-            confirmationNumber: "XXXXXX"
-          ),
-        ];
-        // await gmailInterface.fetch()
+        await gmailInterface.fetch();
         // TODO acutally make this update list
-        yield FetchedMailState(temp);
+        yield FetchedMailState(gmailInterface.flights);
       } catch (error) {
         print(error);
+        yield ErrorMailState(error.toString());
+      }
+    }
+
+    if (event is RemoveEvent) {
+      try {
+        gmailInterface.removeFlight(event.confirmationNumber);
+        yield FetchedMailState(gmailInterface.flights);
+      } catch (error) {
         yield ErrorMailState(error.toString());
       }
     }

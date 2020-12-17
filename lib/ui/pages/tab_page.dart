@@ -45,7 +45,12 @@ class _TabPageState extends State<TabPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Align(
+          child: Text('Travelalot'),
+          alignment: Alignment.topRight,
+        ),
+      ),
       bottomNavigationBar: BlocBuilder<NavigationBloc, NavigationEvent>(
         builder: (context, state) => BottomNavigationBar(
           currentIndex: state.index,
