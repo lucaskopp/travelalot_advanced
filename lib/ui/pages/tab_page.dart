@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelalot/blocs/mail/mail_bloc.dart';
-import 'package:travelalot/data/gmail_data.dart';
 
+import '../../blocs/mail/mail_bloc.dart';
 import '../../blocs/navigation/navigation_bloc.dart';
+import '../../data/gmail_data.dart';
 import 'archive_page.dart';
 import 'home_page.dart';
 import 'settings_page.dart';

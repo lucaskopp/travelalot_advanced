@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelalot/blocs/mail/mail_bloc.dart';
-import 'package:travelalot/ui/pages/flights_page.dart';
 
-import '../widgets/flight_widget.dart';
+import '../../blocs/mail/mail_bloc.dart';
+import 'flights_page.dart';
 
 class HomePage extends StatelessWidget {
   @override

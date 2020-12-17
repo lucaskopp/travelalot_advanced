@@ -1,9 +1,10 @@
-import 'package:html/parser.dart';
-import 'package:http/http.dart' as http;
-import 'package:travelalot/models/flight_model.dart';
 import 'dart:convert';
 
+import 'package:html/parser.dart';
+import 'package:http/http.dart' as http;
+
 import '../interfaces/gmail_interface.dart';
+import '../models/flight_model.dart';
 
 class GmailData implements GmailInterface {
   // rename into something flight related

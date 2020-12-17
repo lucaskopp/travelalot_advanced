@@ -1,4 +1,4 @@
-import 'package:travelalot/models/flight_model.dart';
+import '../models/flight_model.dart';
 
 abstract class GmailInterface {
   List<FlightModel> flights;

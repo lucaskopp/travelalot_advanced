@@ -1,12 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hex_color/flutter_hex_color.dart';
-import 'package:travelalot/blocs/mail/mail_bloc.dart';
 
-import 'app_theme.dart';
 import 'blocs/authentication/authentication_bloc.dart';
 import 'blocs/login/login_bloc.dart';
+import 'blocs/mail/mail_bloc.dart';
 import 'blocs/navigation/navigation_bloc.dart';
 import 'data/auth_data.dart';
 import 'ui/pages/login_page.dart';

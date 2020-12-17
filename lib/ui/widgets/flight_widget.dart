@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelalot/blocs/mail/mail_bloc.dart';
-import 'package:travelalot/models/flight_model.dart';
-import 'package:travelalot/ui/pages/flight_details_page.dart';
+
+import '../../blocs/mail/mail_bloc.dart';
+import '../../models/flight_model.dart';
+import '../pages/flight_details_page.dart';
 
 class FlightWidget extends StatelessWidget {
   final FlightModel flight;

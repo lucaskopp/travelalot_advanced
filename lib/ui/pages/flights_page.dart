@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:travelalot/models/flight_model.dart';
-import 'package:travelalot/ui/widgets/flight_widget.dart';
+
+import '../../models/flight_model.dart';
+import '../widgets/flight_widget.dart';
 
 class FlightsPage extends StatelessWidget {
   final List<FlightModel> flights;

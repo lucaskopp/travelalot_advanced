@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelalot/blocs/mail/mail_bloc.dart';
 
 import '../../blocs/authentication/authentication_bloc.dart';
+import '../../blocs/mail/mail_bloc.dart';
 
 
 class SettingsPage extends StatelessWidget {
