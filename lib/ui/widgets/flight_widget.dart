@@ -16,9 +16,11 @@ class FlightWidget extends StatelessWidget {
       key: Key(flight.name),
       onDismissed: (direction) {
         BlocProvider.of<MailBloc>(context).add(RemoveEvent(flight.name));
-
-        Scaffold.of(context)
-            .showSnackBar(SnackBar(content: Text("${flight.name} dismissed")));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("${flight.name} dismissed"),
+          ),
+        );
       },
       confirmDismiss: (DismissDirection direction) async {
         return await showDialog(
@@ -41,6 +43,7 @@ class FlightWidget extends StatelessWidget {
         );
       },
       child: Card(
+        elevation: 10,
         child: ListTile(
           leading: Text('Flight: ${flight.name}'),
           title: Text('${flight.startLocation} to ${flight.arrivalLocaiton}'),

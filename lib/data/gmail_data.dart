@@ -68,8 +68,9 @@ class GmailData implements GmailInterface {
         html: "not supported",
       );
 
-      if (plainText.contains("United Airlines") &&
+      if (plainText.contains("United") &&
           plainText.contains(RegExp(r"UA\d\d\d"))) {
+        print('in');
         final flightNameExpression = RegExp(r"UA\d\d\d?\d");
         final flightLocationsExpression = RegExp(r"\([A-Z][A-Z][A-Z]\)");
         final flightDatesExpression =
@@ -87,6 +88,8 @@ class GmailData implements GmailInterface {
         tempFlights.add(flightToBeAdded);
         // should be below if more carriers are added
       }
+
+      print(flightToBeAdded.arrivalLocaiton);
     });
 
     flights = tempFlights;

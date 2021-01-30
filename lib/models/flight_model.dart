@@ -15,6 +15,6 @@ class FlightModel {
     @required this.startLocation,
     @required this.arrivalLocaiton,
     @required this.html,
-  }); // TODO add more assertions
+  });
 
 }
